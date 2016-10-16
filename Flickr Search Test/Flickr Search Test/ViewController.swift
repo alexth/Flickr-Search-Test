@@ -17,6 +17,7 @@ final class ViewController: UIViewController {
     fileprivate let numberOfSections = 1
     fileprivate let numberOfItems = 10
     fileprivate var itemsPerRow = 3
+    fileprivate var sourceArray = [FlickrDataModel]()
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
     // MARK: View Lifecycle
@@ -43,7 +44,9 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellIdentifier, for: indexPath) as! ImageCollectionViewCell
+        let dataModel = sourceArray[indexPath.row]
+        cell.setWith(title: dataModel.title, imageLink: dataModel.imageLink)
         return cell
     }
 }

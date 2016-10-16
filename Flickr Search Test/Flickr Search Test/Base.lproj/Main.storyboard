@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bFX-rG-o5T">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,19 +33,20 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCellIdentifier" id="h2Q-me-UGb">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCellIdentifier" id="h2Q-me-UGb" customClass="ImageCollectionViewCell" customModule="Flickr_Search_Test" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="159"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MqT-5N-gnw">
-                                                    <frame key="frameInset" minX="8" minY="37" width="159" height="114"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqT-5N-gnw">
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTI-N5-i2h">
-                                                    <frame key="frameInset" minX="8" minY="8" width="159" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTI-N5-i2h">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="tHH-yO-Q5j"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -53,15 +55,19 @@
                                         </view>
                                         <color key="backgroundColor" red="0.23921568630000001" green="0.80392156859999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="leading" secondItem="h2Q-me-UGb" secondAttribute="leading" id="Ill-ic-pWD"/>
-                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="top" secondItem="UTI-N5-i2h" secondAttribute="bottom" constant="8" id="PnI-bb-6N5"/>
-                                            <constraint firstAttribute="bottom" secondItem="MqT-5N-gnw" secondAttribute="bottom" id="SSK-bb-ycE"/>
-                                            <constraint firstAttribute="trailing" secondItem="MqT-5N-gnw" secondAttribute="trailing" id="Tcr-fT-pkb"/>
-                                            <constraint firstItem="UTI-N5-i2h" firstAttribute="top" secondItem="h2Q-me-UGb" secondAttribute="top" id="ZXi-5E-DE3"/>
-                                            <constraint firstItem="UTI-N5-i2h" firstAttribute="leading" secondItem="h2Q-me-UGb" secondAttribute="leading" id="lkq-V9-kR4"/>
-                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="top" secondItem="UTI-N5-i2h" secondAttribute="bottom" constant="8" id="u0R-7d-Itj"/>
-                                            <constraint firstAttribute="trailing" secondItem="UTI-N5-i2h" secondAttribute="trailing" id="xVT-kI-7ZL"/>
+                                            <constraint firstItem="UTI-N5-i2h" firstAttribute="leading" secondItem="h2Q-me-UGb" secondAttribute="leadingMargin" id="5B9-Zc-Qb0"/>
+                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="centerX" secondItem="h2Q-me-UGb" secondAttribute="centerX" id="9Ao-2X-qu5"/>
+                                            <constraint firstItem="UTI-N5-i2h" firstAttribute="top" secondItem="h2Q-me-UGb" secondAttribute="topMargin" id="DU2-oB-RqW"/>
+                                            <constraint firstItem="UTI-N5-i2h" firstAttribute="trailing" secondItem="h2Q-me-UGb" secondAttribute="trailingMargin" id="NV4-gq-paH"/>
+                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="centerY" secondItem="h2Q-me-UGb" secondAttribute="centerY" constant="14" id="Y6Z-SC-B2d"/>
+                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="top" secondItem="UTI-N5-i2h" secondAttribute="bottom" constant="8" id="ZPC-Hd-2eI"/>
+                                            <constraint firstItem="MqT-5N-gnw" firstAttribute="leading" secondItem="h2Q-me-UGb" secondAttribute="leading" constant="8" id="bcw-f9-bSa"/>
+                                            <constraint firstAttribute="trailing" secondItem="MqT-5N-gnw" secondAttribute="trailing" constant="8" id="pTC-Ee-Ipj"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="MqT-5N-gnw" id="yFp-hP-kaM"/>
+                                            <outlet property="titleLabel" destination="UTI-N5-i2h" id="c2p-6W-C54"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
