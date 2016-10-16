@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
     fileprivate let collectionViewCellIdentifier = "collectionViewCellIdentifier"
     fileprivate let numberOfSections = 1
     fileprivate let numberOfItems = 10
-    fileprivate var itemsPerRow = 3
+    fileprivate var itemsPerRow = 1
     fileprivate var sourceArray = [FlickrDataModel]()
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     fileprivate var linksSourceArray = [String]()
@@ -25,10 +25,7 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager().downloadLinks(searchString: "cars") { (dataModelsArray) in
-            self.sourceArray = dataModelsArray
-            self.collectionView.reloadData()
-        }
+        reloadImages(searchQuery: "cars")
     }
 
     // MARK: Actions
@@ -36,6 +33,17 @@ final class ViewController: UIViewController {
     @IBAction func segmentedControlDidChanged(segmentedControl: UISegmentedControl) {
         itemsPerRow = segmentedControl.selectedSegmentIndex + 1
         collectionView.reloadData()
+    }
+
+    // MARK: Utils
+
+    fileprivate func reloadImages(searchQuery: String) {
+        NetworkManager().downloadLinks(searchString: searchQuery) { (dataModelsArray) in
+            self.sourceArray = dataModelsArray
+            DispatchQueue.main.async(execute: {
+                self.collectionView.reloadData()
+            })
+        }
     }
 }
 
@@ -75,7 +83,7 @@ extension ViewController : UICollectionViewDelegateFlowLayout {
 }
 
 extension ViewController: UICollectionViewDelegate {
-
+    
 }
 
 extension ViewController: UISearchBarDelegate {
