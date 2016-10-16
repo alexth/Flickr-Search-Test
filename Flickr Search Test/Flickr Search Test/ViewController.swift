@@ -19,11 +19,16 @@ final class ViewController: UIViewController {
     fileprivate var itemsPerRow = 3
     fileprivate var sourceArray = [FlickrDataModel]()
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    fileprivate var linksSourceArray = [String]()
 
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkManager().downloadLinks(searchString: "cars") { (dataModelsArray) in
+            self.sourceArray = dataModelsArray
+            self.collectionView.reloadData()
+        }
     }
 
     // MARK: Actions
@@ -40,7 +45,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems
+        return sourceArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
