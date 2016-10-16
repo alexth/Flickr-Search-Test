@@ -11,4 +11,8 @@ import Foundation
 struct FlickrDataModel {
     let title: String!
     let imageLink: String!
+    init(title: String, imageLink: String) {
+        self.title = title
+        self.imageLink = imageLink
+    }
 }
