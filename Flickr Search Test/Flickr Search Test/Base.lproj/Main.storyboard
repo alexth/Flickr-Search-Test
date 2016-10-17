@@ -40,9 +40,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqT-5N-gnw">
-                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MqT-5N-gnw"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTI-N5-i2h">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="tHH-yO-Q5j"/>
@@ -106,11 +104,46 @@
                         <outlet property="collectionView" destination="PeH-dr-wqE" id="DVd-HA-ZcJ"/>
                         <outlet property="searchBar" destination="Ocp-qF-0dg" id="eka-1u-uqq"/>
                         <outlet property="segmentedControl" destination="OG7-tg-XUN" id="jfa-35-wT6"/>
+                        <segue destination="Wb6-KD-Nd4" kind="show" identifier="showDetail" id="Cw9-Yg-ZSO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056.8" y="123.68815592203899"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="BJ6-C8-UM2">
+            <objects>
+                <viewController id="Wb6-KD-Nd4" customClass="DetailViewController" customModule="Flickr_Search_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hP5-9r-ZYO"/>
+                        <viewControllerLayoutGuide type="bottom" id="sLC-EF-202"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qvz-Db-pa8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9hi-Mb-kGh">
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="236" id="hne-Fk-B37"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9hi-Mb-kGh" secondAttribute="trailing" id="A0k-wV-D3y"/>
+                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="centerY" secondItem="qvz-Db-pa8" secondAttribute="centerY" id="R2J-a4-Eku"/>
+                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="leading" secondItem="qvz-Db-pa8" secondAttribute="leading" id="XgF-Sp-RbA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="9hi-Mb-kGh" id="Uia-Qi-hZW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jKh-qj-F5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1965.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l1p-D7-zay">
@@ -131,4 +164,7 @@
             <point key="canvasLocation" x="156" y="124"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="750" height="750"/>
+    </resources>
 </document>
