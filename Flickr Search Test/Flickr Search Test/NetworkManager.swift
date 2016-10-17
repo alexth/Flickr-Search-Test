@@ -6,7 +6,7 @@
 //  Copyright © 2016 Alex Golub. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct NetworkManager {
     func downloadLinks(searchString: String, completion: @escaping (_ result: [FlickrDataModel]) -> Void) {
@@ -20,6 +20,7 @@ struct NetworkManager {
                     if let resultString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? {
                         // just check that response! Received JSON is totally broken and is not valid
                         let JSONString = self.shittyTrimming(string: resultString) //trying to convert data to string and exclude all broken elements
+                        print(JSONString)
                         if let parsedDictionary = self.convertStringToDictionary(text: JSONString) {
                             let itemsArray = parsedDictionary["items"] as! NSArray
                             completion(self.setupModels(itemsArray: itemsArray))
@@ -35,6 +36,18 @@ struct NetworkManager {
                 }
             }
         }.resume()
+    }
+
+    func downloadImage(urlString: String, completion: @escaping (_ result: UIImage) -> Void) {
+        if let url = NSURL(string: urlString) {
+            if let data = NSData(contentsOf: url as URL) {
+                if let image = UIImage(data: data as Data) {
+                    completion(image)
+                } else {
+                    // TODO: Handle error with NSError instance
+                }
+            }
+        }
     }
 
     fileprivate func convertStringToDictionary(text: String) -> [String : AnyObject]? {
@@ -76,6 +89,8 @@ struct NetworkManager {
         }
         let stringWithoutPreLastSymbol = trimmedPrefixesString.substring(to: trimmedPrefixesString.index(before: trimmedPrefixesString.endIndex))
         let stringWithoutLastSymbol = stringWithoutPreLastSymbol.substring(to: stringWithoutPreLastSymbol.index(before: stringWithoutPreLastSymbol.endIndex))
-        return "{" + stringWithoutLastSymbol + "}"
+        let stringWithQuoteMarks = stringWithoutLastSymbol.replacingOccurrences(of: "\\", with: "")
+
+        return "{" + stringWithQuoteMarks + "}"
     }
 }
