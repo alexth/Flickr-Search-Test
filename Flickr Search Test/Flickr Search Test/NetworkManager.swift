@@ -40,6 +40,7 @@ struct NetworkManager {
 
     func downloadImage(urlString: String, completion: @escaping (_ result: UIImage) -> Void) {
         if let url = NSURL(string: urlString) {
+            print("downloadImage")
             if let data = NSData(contentsOf: url as URL) {
                 if let image = UIImage(data: data as Data) {
                     completion(image)
@@ -89,8 +90,7 @@ struct NetworkManager {
         }
         let stringWithoutPreLastSymbol = trimmedPrefixesString.substring(to: trimmedPrefixesString.index(before: trimmedPrefixesString.endIndex))
         let stringWithoutLastSymbol = stringWithoutPreLastSymbol.substring(to: stringWithoutPreLastSymbol.index(before: stringWithoutPreLastSymbol.endIndex))
-        let stringWithQuoteMarks = stringWithoutLastSymbol.replacingOccurrences(of: "\\", with: "")
 
-        return "{" + stringWithQuoteMarks + "}"
+        return "{" + stringWithoutLastSymbol + "}"
     }
 }

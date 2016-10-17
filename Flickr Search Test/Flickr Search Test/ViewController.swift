@@ -14,12 +14,14 @@ final class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     fileprivate let collectionViewCellIdentifier = "collectionViewCellIdentifier"
+    fileprivate let showDetailSegue = "showDetail"
     fileprivate let numberOfSections = 1
     fileprivate let numberOfItems = 10
     fileprivate var itemsPerRow = 1
     fileprivate var sourceArray = [FlickrDataModel]()
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     fileprivate var linksSourceArray = [String]()
+    fileprivate var selectedImage = UIImage()
 
     // MARK: View Lifecycle
 
@@ -28,11 +30,24 @@ final class ViewController: UIViewController {
         reloadImages(searchQuery: "cars")
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showDetailSegue {
+            let dvc = segue.destination as! DetailViewController
+            dvc.image = selectedImage
+        }
+    }
+
     // MARK: Actions
 
     @IBAction func segmentedControlDidChanged(segmentedControl: UISegmentedControl) {
         itemsPerRow = segmentedControl.selectedSegmentIndex + 1
         collectionView.reloadData()
+    }
+
+    // MARK: ScrollView
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 
     // MARK: Utils
@@ -83,7 +98,11 @@ extension ViewController : UICollectionViewDelegateFlowLayout {
 }
 
 extension ViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
+        cell.imageView.image = selectedImage
+        performSegue(withIdentifier: showDetailSegue, sender: self)
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
