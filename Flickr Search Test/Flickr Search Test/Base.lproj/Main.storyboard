@@ -23,6 +23,9 @@
                                     <constraint firstAttribute="height" constant="44" id="CFV-db-Fsk"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wvU-yt-pjf"/>
+                                </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PeH-dr-wqE">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

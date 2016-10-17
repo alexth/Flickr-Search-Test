@@ -106,5 +106,11 @@ extension ViewController: UICollectionViewDelegate {
 }
 
 extension ViewController: UISearchBarDelegate {
-
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let separatedWords = searchBar.text?.components(separatedBy: " ")
+        if let firstWord = separatedWords?.first {
+            reloadImages(searchQuery: firstWord)
+            searchBar.resignFirstResponder()
+        }
+    }
 }
