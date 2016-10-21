@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var imageView: UIImageView!
 
     var image: UIImage!
@@ -17,10 +17,12 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchWith(pinchGestureRecognizer:)))
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchWith(pinch:)))
         imageView.addGestureRecognizer(pinch)
-        let rotation = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationWith(rotationGestureRecognizer:)))
+        pinch.delegate = self
+        let rotation = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationWith(rotation:)))
         imageView.addGestureRecognizer(rotation)
+        rotation.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,12 +32,12 @@ class DetailViewController: UIViewController {
 
     // MARK: Gestures
 
-    func handlePinchWith(pinchGestureRecognizer: UIPinchGestureRecognizer) {
-        imageView.transform = imageView.transform.scaledBy(x: pinchGestureRecognizer.scale, y: pinchGestureRecognizer.scale);
+    func handlePinchWith(pinch: UIPinchGestureRecognizer) {
+        imageView.transform = imageView.transform.scaledBy(x: pinch.scale, y: pinch.scale);
     }
 
-    func handleRotationWith(rotationGestureRecognizer: UIRotationGestureRecognizer) {
-        imageView.transform = imageView.transform.rotated(by: rotationGestureRecognizer.rotation);
-        rotationGestureRecognizer.rotation = 0.0;
+    func handleRotationWith(rotation: UIRotationGestureRecognizer) {
+        imageView.transform = imageView.transform.rotated(by: rotation.rotation);
+        rotation.rotation = 0.0;
     }
 }

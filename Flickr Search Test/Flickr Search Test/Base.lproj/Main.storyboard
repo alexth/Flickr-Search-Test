@@ -127,17 +127,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9hi-Mb-kGh">
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="236" id="hne-Fk-B37"/>
+                                    <constraint firstAttribute="height" constant="236" id="MGa-mx-kEO"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="9hi-Mb-kGh" secondAttribute="trailing" id="A0k-wV-D3y"/>
-                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="centerY" secondItem="qvz-Db-pa8" secondAttribute="centerY" id="R2J-a4-Eku"/>
-                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="leading" secondItem="qvz-Db-pa8" secondAttribute="leading" id="XgF-Sp-RbA"/>
+                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="centerY" secondItem="qvz-Db-pa8" secondAttribute="centerY" id="Btc-48-ck1"/>
+                            <constraint firstItem="9hi-Mb-kGh" firstAttribute="leading" secondItem="qvz-Db-pa8" secondAttribute="leading" id="fUt-bZ-Dxf"/>
+                            <constraint firstAttribute="trailing" secondItem="9hi-Mb-kGh" secondAttribute="trailing" id="tmt-4D-y1s"/>
                         </constraints>
                     </view>
                     <connections>
