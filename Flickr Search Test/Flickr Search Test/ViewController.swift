@@ -53,11 +53,13 @@ final class ViewController: UIViewController {
     // MARK: Utils
 
     fileprivate func reloadImages(searchQuery: String) {
-        NetworkManager().downloadLinks(searchString: searchQuery) { (dataModelsArray) in
-            self.sourceArray = dataModelsArray
-            DispatchQueue.main.async(execute: {
-                self.collectionView.reloadData()
-            })
+        NetworkManager().downloadLinks(searchString: searchQuery) { (dataModelsArray, error) in
+            if error == nil {
+                self.sourceArray = dataModelsArray
+                DispatchQueue.main.async(execute: {
+                    self.collectionView.reloadData()
+                })
+            }
         }
     }
 }
